@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://b284ifurum1ge" path="res://Assets/kenney_space-shooter-redux/PNG/playerShip1_red.png" id="3_1om3g"]
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(512, 300)
 script = ExtResource("1_5yd6y")
 metadata/_edit_group_ = true
 
@@ -20,3 +19,12 @@ texture = ExtResource("3_1om3g")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(12.5, -34.9, 16.2, -14.5, 17.1, -14.5, 35.8, -2.7, 42.6, -10.5, 49.3, -10.5, 49.5, 24.7, 46.6, 29.5, 42.7, 29.5, 39.7, 26.5, 16.4, 31.2, 11.9, 37.5, -12.2, 37.5, -18.4, 30.5, -22.8, 30.5, -39.8, 25.5, -45.2, 29.8, -47.5, 28.8, -47.5, 27.3, -49.5, 25.3, -49.5, -9.5, -48.9, -9.5, -41.5, -10.9, -41.5, -8.4, -35.9, -3.5, -17.5, -12.8, -12.5, -34.9, -12.5, -37.5, 12.5, -37.5)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(1.89655, 0.522729)
+scale = Vector2(0.948276, 0.984848)
+polygon = PackedVector2Array(20, -47, -19, -48, -25, -24, -34, -14, -43, -21, -57, -21, -60, 34, -40, 41, -37, 33, -18, 41, -15, 50, 15, 51, 19, 40, 40, 35, 50, 36, 56, 39, 54, -18, 40, -18, 34, -14, 23, -20)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
