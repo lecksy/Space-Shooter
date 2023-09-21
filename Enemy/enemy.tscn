@@ -13,6 +13,11 @@ texture = ExtResource("2_hn6xt")
 wait_time = 2.0
 autostart = true
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0.506943, -0.799995)
+scale = Vector2(0.993056, 0.98913)
+polygon = PackedVector2Array(-23.6713, -44.6857, 25, -45, 41.7832, -32.5538, 42.7902, 23.0505, 13.5874, 45.2923, -18.6364, 42.2593, -40.7902, 29.1165, -42.8042, -32.5538)
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]

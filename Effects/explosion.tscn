@@ -69,14 +69,15 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yqsex")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 15.0
 }]
 
 [node name="explosion" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_lxpyc")
-frame_progress = 0.0195549
+frame = 8
+frame_progress = 1.0
 offset = Vector2(2.08165e-12, -30)
 script = ExtResource("2_h5v7x")
 
