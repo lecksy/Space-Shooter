@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://drml1r8gp1k58"]
+[gd_scene load_steps=6 format=3 uid="uid://drml1r8gp1k58"]
 
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_uq3e3"]
 [ext_resource type="FontFile" uid="uid://melcryf1hi1k" path="res://Assets/nebula_2/Nebula-Regular.otf" id="2_5qiit"]
-[ext_resource type="FontFile" uid="uid://b0k05gptslyvx" path="res://Assets/nebula_2/Nebula-Hollow.otf" id="3_eshvh"]
+[ext_resource type="Texture2D" uid="uid://73anfp6o05ns" path="res://Assets/kenney_space-shooter-redux/Backgrounds/darkPurple.png" id="2_gg7xm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wj7e"]
+bg_color = Color(0.427451, 0.294118, 0.517647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w3rfn"]
+bg_color = Color(0.427451, 0.294118, 0.517647, 1)
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -13,6 +19,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uq3e3")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.91406, 3.9375)
+texture = ExtResource("2_gg7xm")
+centered = false
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -22,7 +33,7 @@ offset_bottom = -248.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_5qiit")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Welcome to the Space Shooter!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -40,8 +51,9 @@ offset_right = 100.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_eshvh")
+theme_override_fonts/font = ExtResource("2_5qiit")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_6wj7e")
 text = "Play"
 
 [node name="Quit" type="Button" parent="."]
@@ -57,8 +69,9 @@ offset_right = 100.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_eshvh")
+theme_override_fonts/font = ExtResource("2_5qiit")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_w3rfn")
 text = "Quit
 "
 

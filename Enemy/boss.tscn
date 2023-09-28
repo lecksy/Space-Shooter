@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5jfgte8du8h7"]
+
+[ext_resource type="Script" path="res://Enemy/boss.gd" id="1_fdggw"]
+[ext_resource type="Texture2D" uid="uid://c85nifr54hod2" path="res://Assets/kenney_space-shooter-redux/PNG/Enemies/enemyBlue1.png" id="2_dakmm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13iht"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7658"]
+bg_color = Color(0, 0.545098, 0.0235294, 1)
+
+[node name="Boss" type="CharacterBody2D"]
+script = ExtResource("1_fdggw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_dakmm")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(3, 3)
+polygon = PackedVector2Array(46.5, -24.4, 46.5, -4.9, 28.7, 42, 12.1, 42, 6.5, 38, 6.5, 33.7, 10.8, 19, -11.5, 19, -11.5, 19.7, -5.8, 39, -8.8, 39, -12.4, 42, -29.5, 42, -29.5, 41.4, -46.5, -1.5, -46.5, -24.4, -33.5, -41.7, -20.5, -42, -8.5, -37.4, -8.5, -35.3, -5.2, -28, 4.5, -28, 10.3, -39, 13.9, -39, 18.7, -42, 33.5, -42)
+
+[node name="Weapon1" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Weapon2" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -100.0
+offset_top = 130.0
+offset_right = 100.0
+offset_bottom = 150.0
+theme_override_styles/background = SubResource("StyleBoxFlat_13iht")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l7658")
+max_value = 200.0
+show_percentage = false
+
+[connection signal="timeout" from="Weapon1" to="." method="_on_weapon_1_timeout"]
+[connection signal="timeout" from="Weapon2" to="." method="_on_weapon_2_timeout"]

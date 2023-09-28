@@ -1,36 +1,110 @@
-[gd_scene load_steps=9 format=3 uid="uid://cb8ah82hwtb1y"]
+[gd_scene load_steps=19 format=3 uid="uid://cb8ah82hwtb1y"]
 
-[ext_resource type="PackedScene" uid="uid://k3c4d8ctmune" path="res://Player/player.tscn" id="1_w8r1d"]
-[ext_resource type="PackedScene" uid="uid://jqydm0obyav2" path="res://Asteroid/asteroid.tscn" id="2_66awh"]
+[ext_resource type="Texture2D" uid="uid://r86gtqgl0vdp" path="res://Assets/background.png" id="1_ik75l"]
+[ext_resource type="Script" path="res://Assets/Background.gd" id="2_dghie"]
 [ext_resource type="Script" path="res://Player/Player_Container.gd" id="2_jlmi7"]
-[ext_resource type="PackedScene" uid="uid://tuo1qsxdk3lj" path="res://Enemy/enemy.tscn" id="3_xfpua"]
+[ext_resource type="Script" path="res://Enemy/Enemy_Container.gd" id="3_53cpw"]
 [ext_resource type="FontFile" uid="uid://melcryf1hi1k" path="res://Assets/nebula_2/Nebula-Regular.otf" id="5_5vg0b"]
 [ext_resource type="Script" path="res://UI/HUD.gd" id="5_k1us4"]
 [ext_resource type="Script" path="res://UI/Menu.gd" id="7_xo2t4"]
 [ext_resource type="FontFile" uid="uid://b0k05gptslyvx" path="res://Assets/nebula_2/Nebula-Hollow.otf" id="8_rxul6"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ocea"]
+atlas = ExtResource("1_ik75l")
+region = Rect2(0, 0, 190, 188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y22cc"]
+atlas = ExtResource("1_ik75l")
+region = Rect2(205, 0, 190, 188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8oiq5"]
+atlas = ExtResource("1_ik75l")
+region = Rect2(410, 0, 190, 188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uht2a"]
+atlas = ExtResource("1_ik75l")
+region = Rect2(0, 205, 190, 188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q53yh"]
+atlas = ExtResource("1_ik75l")
+region = Rect2(205, 205, 190, 188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mflcd"]
+atlas = ExtResource("1_ik75l")
+region = Rect2(410, 205, 190, 188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtehy"]
+atlas = ExtResource("1_ik75l")
+region = Rect2(0, 410, 190, 188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eglp"]
+atlas = ExtResource("1_ik75l")
+region = Rect2(205, 410, 190, 188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i3g2"]
+atlas = ExtResource("1_ik75l")
+region = Rect2(410, 410, 190, 188)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ahhi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ocea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y22cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8oiq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uht2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q53yh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mflcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtehy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eglp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i3g2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
 [node name="Game" type="Node2D"]
 
+[node name="Background" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.67451)
+self_modulate = Color(0.619608, 0.619608, 0.619608, 1)
+position = Vector2(-70, -66)
+scale = Vector2(5.83, 5.69697)
+sprite_frames = SubResource("SpriteFrames_ahhi5")
+frame_progress = 0.942855
+centered = false
+script = ExtResource("2_dghie")
+
 [node name="Asteroid_Container" type="Node2D" parent="."]
-
-[node name="Asteroid" parent="Asteroid_Container" instance=ExtResource("2_66awh")]
-position = Vector2(100, 100)
-
-[node name="Asteroid2" parent="Asteroid_Container" instance=ExtResource("2_66awh")]
-position = Vector2(900, 600)
 
 [node name="Effects" type="Node2D" parent="."]
 
 [node name="Player_Container" type="Node2D" parent="."]
 script = ExtResource("2_jlmi7")
 
-[node name="Player" parent="Player_Container" instance=ExtResource("1_w8r1d")]
-position = Vector2(576, 324)
-
 [node name="Enemy_Container" type="Node2D" parent="."]
+script = ExtResource("3_53cpw")
 
-[node name="Enemy" parent="Enemy_Container" instance=ExtResource("3_xfpua")]
-position = Vector2(400, 100)
+[node name="Timer" type="Timer" parent="Enemy_Container"]
+wait_time = 1.5
+autostart = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -145,6 +219,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_5vg0b")
 text = "Quit"
 
+[connection signal="timeout" from="Enemy_Container/Timer" to="Enemy_Container" method="_on_timer_timeout"]
 [connection signal="timeout" from="UI/HUD/Timer" to="UI/HUD" method="_on_timer_timeout"]
 [connection signal="pressed" from="UI/Menu/Restart" to="UI/Menu" method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/Menu/Quit" to="UI/Menu" method="_on_quit_pressed"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddeybiqpo4a6r"]
+
+[ext_resource type="Script" path="res://Enemy/Enemy1.gd" id="1_p6djb"]
+[ext_resource type="Texture2D" uid="uid://bty0p2gel6hm5" path="res://Assets/kenney_space-shooter-redux/PNG/Enemies/enemyBlue2.png" id="2_csj60"]
+
+[node name="Enemy1" type="CharacterBody2D"]
+position = Vector2(100, -50)
+script = ExtResource("1_p6djb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_csj60")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(46.5, -24.4, 46.5, -4.9, 28.7, 42, 12.1, 42, 6.5, 38, 6.5, 33.7, 10.8, 19, -11.5, 19, -11.5, 19.7, -5.8, 39, -8.8, 39, -12.4, 42, -29.5, 42, -29.5, 41.4, -46.5, -1.5, -46.5, -24.4, -33.5, -41.7, -20.5, -42, -8.5, -37.4, -8.5, -35.3, -5.2, -28, 4.5, -28, 10.3, -39, 13.9, -39, 18.7, -42, 33.5, -42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.25
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

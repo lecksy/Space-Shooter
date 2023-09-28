@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://drcoe4vwis8dh"]
+
+[ext_resource type="Script" path="res://Enemy/enemy_bullet2.gd" id="1_7gakt"]
+[ext_resource type="Texture2D" uid="uid://fagb64bwpn1g" path="res://Assets/kenney_space-shooter-redux/PNG/Lasers/laserBlue10.png" id="2_rnrm4"]
+
+[node name="Enemy_Bullet" type="Area2D"]
+script = ExtResource("1_7gakt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.4375, 0.423913)
+texture = ExtResource("2_rnrm4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.4375, 0.423913)
+polygon = PackedVector2Array(18.5, -4.1, 17.5, -3.4, 17.5, 1.5, 18.2, 1.5, 18.5, 3.6, 18.5, 18.5, 5.5, 18.5, 3.7, 16.5, -2.5, 16.5, -4, 18.5, -18.5, 18.5, -18.5, 4, -16.5, 2.5, -16.5, -3.5, -18.5, -5, -18.5, -18.5, -2.6, -18.5, 2.5, -17.8, 4.6, -18.5, 18.5, -18.5)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

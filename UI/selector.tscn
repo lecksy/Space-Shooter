@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://wvij7dqyvyjc"]
+
+[ext_resource type="Script" path="res://UI/selector.gd" id="1_0xn4j"]
+[ext_resource type="FontFile" uid="uid://melcryf1hi1k" path="res://Assets/nebula_2/Nebula-Regular.otf" id="1_05nwf"]
+[ext_resource type="Texture2D" uid="uid://b284ifurum1ge" path="res://Assets/kenney_space-shooter-redux/PNG/playerShip1_red.png" id="2_0c5re"]
+[ext_resource type="Texture2D" uid="uid://73anfp6o05ns" path="res://Assets/kenney_space-shooter-redux/Backgrounds/darkPurple.png" id="2_8t25e"]
+[ext_resource type="Texture2D" uid="uid://rrhhbomy5dvj" path="res://Assets/kenney_space-shooter-redux/PNG/playerShip3_green.png" id="4_1egsf"]
+[ext_resource type="Texture2D" uid="uid://c0gew5cdsctw2" path="res://Assets/kenney_space-shooter-redux/PNG/playerShip2_orange.png" id="4_1lfvf"]
+
+[node name="Selector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xn4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.92969, 3.91016)
+texture = ExtResource("2_8t25e")
+centered = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -50.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_05nwf")
+theme_override_font_sizes/font_size = 50
+text = "Select your ship"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shipG" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 230.5
+offset_top = 550.0
+offset_right = 329.5
+offset_bottom = 625.0
+grow_vertical = 0
+texture_normal = ExtResource("2_0c5re")
+
+[node name="shipC" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 445.0
+offset_top = 550.0
+offset_right = 543.0
+offset_bottom = 625.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("4_1egsf")
+
+[node name="shipB" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 657.5
+offset_top = 550.0
+offset_right = 769.5
+offset_bottom = 625.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_1lfvf")
+
+[connection signal="pressed" from="shipG" to="." method="_on_ship_g_pressed"]
+[connection signal="pressed" from="shipC" to="." method="_on_ship_c_pressed"]
+[connection signal="pressed" from="shipB" to="." method="_on_ship_b_pressed"]
